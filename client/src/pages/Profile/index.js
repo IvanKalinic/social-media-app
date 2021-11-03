@@ -4,7 +4,7 @@ import "./index.scss";
 
 const Profile = () => {
   return (
-    <>
+    <div className="profile-parent-container">
       <Topbar />
       <div className="profile">
         <Sidebar />
@@ -13,7 +13,7 @@ const Profile = () => {
             <div className="profile-cover">
               <img
                 className="profile-cover-img"
-                src="assets/post/person3.jpg"
+                src="assets/post/post3.jpg"
                 alt=""
               />
               <img
@@ -24,7 +24,9 @@ const Profile = () => {
             </div>
             <div className="profile-info">
               <h4 className="profile-info-name">Ivan Kalinić</h4>
-              <span className="profile-info-desc">Hello my friends!</span>
+              <span className="profile-info-description">
+                Hello my friends!
+              </span>
             </div>
           </div>
           <div className="profile-right-bottom">
@@ -33,7 +35,7 @@ const Profile = () => {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 
