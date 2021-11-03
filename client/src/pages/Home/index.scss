@@ -1,0 +1,9 @@
+@use "src/assets/globalStyles.scss" as *;
+
+.parent-container{
+  margin:-8px;
+}
+.home-container {
+  @include flexbox(row, center, center);
+  width:100%;
+}
