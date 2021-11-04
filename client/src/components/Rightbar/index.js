@@ -3,8 +3,20 @@ import "./index.scss";
 import { Users } from "../../mock/mockUsers";
 import Online from "../../components/Online";
 
-const Rightbar = ({ profile }) => {
+const Rightbar = ({ user }) => {
   const PF = process.env.REACT_APP_PUBLIC_FOLDER;
+  const decideRelationship = (relationship) => {
+    switch (relationship) {
+      case 1:
+        return "Single";
+      case 2:
+        return "Married";
+      case 3:
+        return "Complicated";
+      default:
+        return null;
+    }
+  };
   const HomeRightbar = () => {
     return (
       <>
@@ -31,15 +43,17 @@ const Rightbar = ({ profile }) => {
         <div className="rightbar-info">
           <div className="rightbar-info-item">
             <span className="rightbar-info-key">City:</span>
-            <span className="rightbar-info-value">New York</span>
+            <span className="rightbar-info-value">{user.city}</span>
           </div>
           <div className="rightbar-info-item">
             <span className="rightbar-info-key">From:</span>
-            <span className="rightbar-info-value">Madrid</span>
+            <span className="rightbar-info-value">{user.from}</span>
           </div>
           <div className="rightbar-info-item">
             <span className="rightbar-info-key">Relationship:</span>
-            <span className="rightbar-info-value">Single</span>
+            <span className="rightbar-info-value">
+              {decideRelationship(user.relationship)}
+            </span>
           </div>
         </div>
         <h4 className="rightbar-title">User friends</h4>
@@ -100,7 +114,7 @@ const Rightbar = ({ profile }) => {
   return (
     <div className="rightbar">
       <div className="rightbarWrapper">
-        {profile ? <ProfileRightbar /> : <HomeRightbar />}
+        {user ? <ProfileRightbar /> : <HomeRightbar />}
       </div>
     </div>
   );
