@@ -3,13 +3,14 @@ import { PermMedia, Label, Room, EmojiEmotions } from "@material-ui/icons";
 import "./index.scss";
 
 const Share = () => {
+  const PF = process.env.REACT_APP_PUBLIC_FOLDER;
   return (
     <div className="share">
       <div className="share-wrapper">
         <div div className="share-top">
           <img
             className="share-profile-img"
-            src="/assets/person/person1.jpg"
+            src={`${PF}person/person1.jpg`}
             alt=""
           />
           <input

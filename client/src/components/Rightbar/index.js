@@ -4,6 +4,7 @@ import { Users } from "../../mock/mockUsers";
 import Online from "../../components/Online";
 
 const Rightbar = ({ profile }) => {
+  const PF = process.env.REACT_APP_PUBLIC_FOLDER;
   const HomeRightbar = () => {
     return (
       <>
@@ -45,7 +46,7 @@ const Rightbar = ({ profile }) => {
         <div className="rightbar-followings">
           <div className="rightbar-following">
             <img
-              src="assets/person/person1.jpg"
+              src={`${PF}person/person1.jpg`}
               alt=""
               className="rightbar-following-img"
             />
@@ -53,7 +54,7 @@ const Rightbar = ({ profile }) => {
           </div>
           <div className="rightbar-following">
             <img
-              src="assets/person/person2.jpg"
+              src={`${PF}person/person2.jpg`}
               alt=""
               className="rightbar-following-img"
             />
@@ -61,7 +62,7 @@ const Rightbar = ({ profile }) => {
           </div>
           <div className="rightbar-following">
             <img
-              src="assets/person/person3.jpg"
+              src={`${PF}person/person3.jpg`}
               alt=""
               className="rightbar-following-img"
             />
@@ -69,7 +70,7 @@ const Rightbar = ({ profile }) => {
           </div>
           <div className="rightbar-following">
             <img
-              src="assets/person/person4.jpg"
+              src={`${PF}person/person4.jpg`}
               alt=""
               className="rightbar-following-img"
             />
@@ -77,7 +78,7 @@ const Rightbar = ({ profile }) => {
           </div>
           <div className="rightbar-following">
             <img
-              src="assets/person/person5.jpg"
+              src={`${PF}person/person5.jpg`}
               alt=""
               className="rightbar-following-img"
             />
@@ -85,7 +86,7 @@ const Rightbar = ({ profile }) => {
           </div>
           <div className="rightbar-following">
             <img
-              src="assets/person/person6.jpg"
+              src={`${PF}person/person6.jpg`}
               alt=""
               className="rightbar-following-img"
             />

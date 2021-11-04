@@ -1,10 +1,7 @@
-import Home from "./pages/Home";
-import Profile from "./pages/Profile";
-import Register from "./pages/Register";
-import Login from "./pages/Login";
+import PageRoutes from "./routes";
 
 const App = () => {
-  return <Profile />;
+  return <PageRoutes />;
 };
 
 export default App;

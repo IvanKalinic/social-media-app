@@ -3,6 +3,7 @@ import { Topbar, Sidebar, Feed, Rightbar } from "../../components";
 import "./index.scss";
 
 const Profile = () => {
+  const PF = process.env.REACT_APP_PUBLIC_FOLDER;
   return (
     <div className="profile-parent-container">
       <Topbar />
@@ -13,12 +14,12 @@ const Profile = () => {
             <div className="profile-cover">
               <img
                 className="profile-cover-img"
-                src="assets/post/post3.jpg"
+                src={`${PF}post/post3.jpg`}
                 alt=""
               />
               <img
                 className="profile-user-img"
-                src="assets/person/person7.jpg"
+                src={`${PF}person/person7.jpg`}
                 alt=""
               />
             </div>

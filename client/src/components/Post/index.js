@@ -6,6 +6,7 @@ import "./index.scss";
 const Post = ({ post }) => {
   const [like, setLike] = useState(post.like);
   const [isLiked, setIsLiked] = useState(false);
+  const PF = process.env.REACT_APP_PUBLIC_FOLDER;
 
   const likeHandler = () => {
     setLike(isLiked ? like - 1 : like + 1);
@@ -19,7 +20,10 @@ const Post = ({ post }) => {
           <div className="post-top-left">
             <img
               className="post-profile-img"
-              src={Users.filter((u) => u.id === post?.userId)[0].profilePicture}
+              src={
+                PF +
+                Users.filter((u) => u.id === post?.userId)[0].profilePicture
+              }
               alt=""
             />
             <span className="post-username">
@@ -33,19 +37,19 @@ const Post = ({ post }) => {
         </div>
         <div className="post-center">
           <span className="post-text">{post?.desc}</span>
-          <img className="post-img" src={post.photo} alt="" />
+          <img className="post-img" src={PF + post.photo} alt="" />
         </div>
         <div className="post-bottom">
           <div className="post-bottom-left">
             <img
               className="like-icon"
-              src="assets/like.png"
+              src={`${PF}like.png`}
               onClick={likeHandler}
               alt=""
             />
             <img
               className="like-icon"
-              src="assets/heart.png"
+              src={`${PF}heart.png`}
               onClick={likeHandler}
               alt=""
             />
