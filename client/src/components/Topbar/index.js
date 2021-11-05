@@ -2,8 +2,11 @@ import React from "react";
 import "./index.scss";
 import { Search, Person, Chat, Notifications } from "@material-ui/icons";
 import { Link } from "react-router-dom";
+import { useAuth } from "../../context/AuthContext";
 
 const Topbar = () => {
+  const { user } = useAuth();
+  const PF = process.env.REACT_APP_PUBLIC_FOLDER;
   return (
     <div className="topbar-container">
       <div className="topbar-left">
@@ -39,7 +42,17 @@ const Topbar = () => {
             <span className="topbar-icon-badge">3</span>
           </div>
         </div>
-        <img src="/assets/person/person1.jpg" alt="" className="topbar-image" />
+        <Link to={`/profile/${user.username}`}>
+          <img
+            src={
+              user.profilePicture
+                ? PF + user.profilePicture
+                : PF + "person/noAvatar.png"
+            }
+            alt=""
+            className="topbar-image"
+          />
+        </Link>
       </div>
     </div>
   );

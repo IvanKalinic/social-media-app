@@ -16,6 +16,7 @@
     "react-scripts": "4.0.3",
     "sass": "^1.43.4",
     "sass-loader": "^12.3.0",
+    "swr": "^1.0.1",
     "timeago.js": "^4.0.2",
     "web-vitals": "^1.1.2"
   },

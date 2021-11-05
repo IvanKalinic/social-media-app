@@ -44,6 +44,11 @@ router.delete("/:id", async (req, res) => {
 //like or dislike a post
 router.put("/:id/like", async (req, res) => {
   try {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header(
+      "Access-Control-Allow-Headers",
+      "Origin, X-Requested-With, Content-Type, Accept"
+    );
     const post = await Post.findById(req.params.id);
     if (!post.likes.includes(req.body.userId)) {
       await post.updateOne({ $push: { likes: req.body.userId } });
@@ -61,6 +66,11 @@ router.put("/:id/like", async (req, res) => {
 router.get("/:id", async (req, res) => {
   try {
     const post = await Post.findById(req.params.id);
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header(
+      "Access-Control-Allow-Headers",
+      "Origin, X-Requested-With, Content-Type, Accept"
+    );
     res.status(200).json(post);
   } catch (err) {
     res.status(500).json(err);
