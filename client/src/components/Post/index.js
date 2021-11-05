@@ -5,6 +5,7 @@ import "./index.scss";
 import axios from "axios";
 import { format } from "timeago.js";
 import { Link } from "react-router-dom";
+import useSWR, { mutate, trigger } from "@zeit/swr";
 
 const Post = ({ post }) => {
   const [like, setLike] = useState(post.likes.length);
@@ -12,12 +13,19 @@ const Post = ({ post }) => {
   const [user, setUser] = useState([]);
   const { user: currentUser } = useAuth();
   const PF = process.env.REACT_APP_PUBLIC_FOLDER;
+  const fetcher = (...args) => fetch(...args).then((res) => res.json());
+  const { data } = useSWR("/posts/" + post._id, fetcher);
 
   const likeHandler = () => {
     try {
+      mutate(
+        "/posts/" + post.id,
+        { ...data.likes.push(currentUser._id) },
+        false
+      );
       axios.put("/posts/" + post._id + "/like", { userId: currentUser._id });
+      trigger("/posts/" + post.id);
     } catch (err) {}
-    setLike(isLiked ? like - 1 : like + 1);
     setIsLiked(!isLiked);
   };
 
@@ -70,7 +78,9 @@ const Post = ({ post }) => {
               onClick={likeHandler}
               alt=""
             />
-            <span className="post-like-counter">{like} people like it</span>
+            <span className="post-like-counter">
+              {data?.likes?.length || 0} people like it
+            </span>
           </div>
           <div className="post-bottom-right">
             <span className="post-comment-text">{post.comment} comments</span>
