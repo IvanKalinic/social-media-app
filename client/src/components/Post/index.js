@@ -6,14 +6,14 @@ import axios from "axios";
 import { format } from "timeago.js";
 import { Link } from "react-router-dom";
 import useSWR, { mutate, trigger } from "@zeit/swr";
+import { fetcher } from "../../utils";
 
 const Post = ({ post }) => {
-  const [like, setLike] = useState(post.likes.length);
   const [isLiked, setIsLiked] = useState(false);
   const [user, setUser] = useState([]);
   const { user: currentUser } = useAuth();
   const PF = process.env.REACT_APP_PUBLIC_FOLDER;
-  const fetcher = (...args) => fetch(...args).then((res) => res.json());
+
   const { data } = useSWR("/posts/" + post._id, fetcher);
 
   const likeHandler = () => {
@@ -61,7 +61,7 @@ const Post = ({ post }) => {
           </div>
         </div>
         <div className="post-center">
-          <span className="post-text">{post?.desc}</span>
+          <span className="post-text">{post?.description}</span>
           <img className="post-img" src={PF + post.img} alt="" />
         </div>
         <div className="post-bottom">

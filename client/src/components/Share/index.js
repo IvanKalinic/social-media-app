@@ -3,12 +3,17 @@ import { PermMedia, Label, Room, EmojiEmotions } from "@material-ui/icons";
 import { useAuth } from "../../context/AuthContext";
 import "./index.scss";
 import axios from "axios";
+import useSWR, { mutate, trigger } from "@zeit/swr";
+import { fetcher } from "../../utils";
 
-const Share = () => {
+const Share = ({ setUpdate }) => {
   const PF = process.env.REACT_APP_PUBLIC_FOLDER;
   const { user } = useAuth();
   const description = useRef();
   const [file, setFile] = useState(null);
+  const { data } = useSWR(`/posts/timeline/${user._id}`, fetcher);
+
+  console.log(data);
 
   const submitHandler = async (e) => {
     e.preventDefault();
@@ -29,8 +34,10 @@ const Share = () => {
       }
     }
     try {
+      mutate(`/posts/timeline/${user._id}`, [...data, newPost]);
       await axios.post("/posts", newPost);
-      window.location.reload();
+      trigger(`/posts/timeline/${user._id}`);
+      setUpdate(true);
     } catch (err) {}
   };
 
