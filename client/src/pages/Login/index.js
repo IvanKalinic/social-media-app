@@ -1,6 +1,12 @@
-import React from "react";
+import React, { useRef } from "react";
 
 const Login = () => {
+  const email = useRef();
+  const password = useRef();
+  const handleClick = (e) => {
+    e.preventDefault();
+    console.log(email);
+  };
   return (
     <div className="login">
       <div className="login-wrapper">
@@ -11,15 +17,22 @@ const Login = () => {
           </span>
         </div>
         <div className="login-right">
-          <div className="login-box">
+          <form className="login-box" onSubmit={handleClick}>
             <input
               placeholder="Email"
+              type="email"
+              required
               className="login-input"
+              ref={email}
               style={{ marginBottom: -40 }}
             />
             <input
               placeholder="Password"
+              type="password"
+              required
+              minLength="6"
               className="login-input"
+              ref={password}
               style={{ marginBottom: -20 }}
             />
             <button className="login-button">Log In</button>
@@ -27,7 +40,7 @@ const Login = () => {
             <button className="login-register-button">
               Create a New Account
             </button>
-          </div>
+          </form>
         </div>
       </div>
     </div>
