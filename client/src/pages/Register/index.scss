@@ -58,6 +58,12 @@
   font-size: 20px;
   font-weight: 500;
   cursor: pointer;
+  &:focuse {
+    outline: none;
+  }
+  &:disabled {
+    cursor: not-allowed;
+  }
 }
 
 .login-forgot {
@@ -76,4 +82,7 @@
   font-size: 20px;
   font-weight: 500;
   cursor: pointer;
+  &:focuse {
+    outline: none;
+  }
 }
