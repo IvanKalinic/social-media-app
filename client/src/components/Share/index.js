@@ -1,5 +1,11 @@
 import React, { useRef, useState } from "react";
-import { PermMedia, Label, Room, EmojiEmotions } from "@material-ui/icons";
+import {
+  PermMedia,
+  Label,
+  Room,
+  EmojiEmotions,
+  Cancel,
+} from "@material-ui/icons";
 import { useAuth } from "../../context/AuthContext";
 import "./index.scss";
 import axios from "axios";
@@ -12,8 +18,6 @@ const Share = ({ setUpdate }) => {
   const description = useRef();
   const [file, setFile] = useState(null);
   const { data } = useSWR(`/posts/timeline/${user._id}`, fetcher);
-
-  console.log(data);
 
   const submitHandler = async (e) => {
     e.preventDefault();
@@ -57,6 +61,15 @@ const Share = ({ setUpdate }) => {
           />
         </div>
         <hr className="share-hr" />
+        {file && (
+          <div className="share-img-container">
+            <img src={URL.createObjectURL(file)} alt="" className="share-img" />
+            <Cancel
+              className="share-cancel-img"
+              onClick={() => setFile(null)}
+            />
+          </div>
+        )}
         <form className="share-bottom" onSubmit={submitHandler}>
           <div className="share-options">
             <label htmlFor="file" className="share-option">

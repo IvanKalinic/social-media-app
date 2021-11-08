@@ -8,6 +8,7 @@ const Feed = ({ username }) => {
   const [posts, setPosts] = useState([]);
   const [update, setUpdate] = useState(false);
   const { user } = useAuth();
+
   useEffect(() => {
     const fetchPosts = async () => {
       const res = username
@@ -40,7 +41,9 @@ const Feed = ({ username }) => {
   return (
     <div className="feed">
       <div className="feed-wrapper">
-        <Share setUpdate={setUpdate} />
+        {(!username || username === user.username) && (
+          <Share setUpdate={setUpdate} />
+        )}
         {posts?.map((post) => (
           <Post key={post._id} post={post} />
         ))}
